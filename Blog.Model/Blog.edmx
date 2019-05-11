@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BloggerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Content" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="PublishTime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReadPeople" Type="int" Nullable="false" />
+          <Property Name="ArticleTypeId" Type="int" />
+          <Property Name="PublishName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_ArticleType">
+          <Key>
+            <PropertyRef Name="ArticleTypeId" />
+          </Key>
+          <Property Name="ArticleTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleTypeName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentContent" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CommentTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPet" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserSex" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserBirthday" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserBirthplace" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserMailbox" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserQQ" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserState" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImageId" Type="int" />
+          <Property Name="RegTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserSig" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="BloggerModelStoreContainer">
+          <EntitySet Name="T_Article" EntityType="Self.T_Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ArticleType" EntityType="Self.T_ArticleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Comment" EntityType="Self.T_Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_User" EntityType="Self.T_User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BloggerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PublishTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReadPeople" Type="Int32" Nullable="false" />
+          <Property Name="ArticleTypeId" Type="Int32" />
+          <Property Name="PublishName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_ArticleType">
+          <Key>
+            <PropertyRef Name="ArticleTypeId" />
+          </Key>
+          <Property Name="ArticleTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleTypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserSex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserBirthplace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserMailbox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserQQ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageId" Type="Int32" />
+          <Property Name="RegTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserSig" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="BloggerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_Article" EntityType="Self.T_Article" />
+          <EntitySet Name="T_ArticleType" EntityType="Self.T_ArticleType" />
+          <EntitySet Name="T_Comment" EntityType="Self.T_Comment" />
+          <EntitySet Name="T_User" EntityType="Self.T_User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BloggerModelStoreContainer" CdmEntityContainer="BloggerEntities">
+          <EntitySetMapping Name="T_Article">
+            <EntityTypeMapping TypeName="BloggerModel.T_Article">
+              <MappingFragment StoreEntitySet="T_Article">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+                <ScalarProperty Name="ReadPeople" ColumnName="ReadPeople" />
+                <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
+                <ScalarProperty Name="PublishName" ColumnName="PublishName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ArticleType">
+            <EntityTypeMapping TypeName="BloggerModel.T_ArticleType">
+              <MappingFragment StoreEntitySet="T_ArticleType">
+                <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
+                <ScalarProperty Name="ArticleTypeName" ColumnName="ArticleTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Comment">
+            <EntityTypeMapping TypeName="BloggerModel.T_Comment">
+              <MappingFragment StoreEntitySet="T_Comment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CommentTime" ColumnName="CommentTime" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_User">
+            <EntityTypeMapping TypeName="BloggerModel.T_User">
+              <MappingFragment StoreEntitySet="T_User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPet" ColumnName="UserPet" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserSex" ColumnName="UserSex" />
+                <ScalarProperty Name="UserBirthday" ColumnName="UserBirthday" />
+                <ScalarProperty Name="UserBirthplace" ColumnName="UserBirthplace" />
+                <ScalarProperty Name="UserMailbox" ColumnName="UserMailbox" />
+                <ScalarProperty Name="UserQQ" ColumnName="UserQQ" />
+                <ScalarProperty Name="UserState" ColumnName="UserState" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="UserSig" ColumnName="UserSig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
