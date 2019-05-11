@@ -1,0 +1,63 @@
+﻿@model Blog.Model.T_User
+
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/navLayoutPage1.cshtml";
+}
+<script src="~/Scripts/user.js"></script>
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <form class="form-horizontal form-signin">
+            <h2 class="form-signin-heading">请输入您的用户名和密码！</h2>
+            <div class="form-group">
+                <label for="inputUserName" class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputUName" name="UserName" placeholder="请输入用户名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputUserPassword" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputUPwd" name="UserPassword" placeholder="请输入密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" id="btnLog" class="form-control btn btn-info">登录</button>
+            </div>
+            <div class="form-group">
+                <button type="button" id="btnUp" class="form-control btn btn-danger">找回密码</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">找回密码</h4>
+            </div>
+            <div class="modal-body"> 
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputUserName" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEUName" name="UserName" placeholder="请输入用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUserPassword" class="col-sm-2 control-label">新密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputEPwd" name="UserPassword" placeholder="请输入密码">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="btnEdit" class="btn btn-primary">找回</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
