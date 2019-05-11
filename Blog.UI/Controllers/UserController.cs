@@ -63,6 +63,5 @@ namespace Blog.UI.Controllers
                 return Json(new { msg = "找回失败", success = false });
             }
         }
-        
     }
 }
