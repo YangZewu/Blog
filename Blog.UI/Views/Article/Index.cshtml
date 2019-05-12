@@ -5,5 +5,39 @@
     Layout = "~/Views/Shared/navLayoutPage1.cshtml";
 }
 
-<h2>Index</h2>
+    <div class="container" style="margin-top:30px">
+        <div class="row">
+            <div class="col-sm-8 blog-main col-sm-offset-1">
+                <h4 class="form-signin-heading">在这你可以将自己生活上不如意的事情发表在这</h4>
+                <hr />
+                <div id="Article" class="blog-post">
+                    <h4 id="Title" class="blog-post-title">文章标题</h4>
+                    <p class="blog-post-meta">发布时间：|阅读人数：|发布人：</p>
+                    <p id="Content">文章内容<a href="#">查看全文</a></p>
+                    <hr />
+                </div>
+            </div>
+
+
+            <div class="col-sm-2 col-sm-offset-1 blog-sidebar">
+                <div id="Myself" class="sidebar-module sidebar-module-inset">
+                    <h4 id="Upet"><em>昵称. </em><img class="img-circle" style="width:80px;height:80px" src="/Img/1.jpg" /></h4>
+                    <p id="Usig">签名</p>
+                </div>
+                <div class="sidebar-module">
+                    <h4>热门文章</h4>
+                    <ol class="list-unstyled">
+                    </ol>
+                </div>
+                <div class="sidebar-module">
+                    <h4>文章推荐</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="#">WEB教学</a></li>
+                        <li><a href="#">最新科技信息</a></li>
+                        <li><a href="#">日常八卦</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 
