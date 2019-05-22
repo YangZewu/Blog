@@ -17,20 +17,20 @@ namespace Blog.BLL
             return article.GetList(whereLambda);
         }
         //按照降序查询文章
-        public List<T_Article> GetT_Articles()
-        {
-            return article.GetList();
-        }
+        //public List<T_Article> GetT_Articles()
+        //{
+        //    return article.GetList();
+        //}
         //增加
         public bool Add(T_Article a)
         {
             return article.Add(a);
         }
         //修改
-        /*public bool Updata(T_Article)
+        public bool Updata(int id)
         {
-
-        }*/
+            return article.Updata(id);
+        }
         //删除
         public bool Delete(int id)
         {

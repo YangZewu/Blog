@@ -35,6 +35,7 @@
             success: function (data) {
                 if (data.success) {
                     alert("登录成功");
+                    window.location = "/Article/Index";
                 }
                 else {
                     alert("登录失败");

@@ -43,7 +43,7 @@ namespace Blog.UI.Controllers
         public JsonResult GetUser(T_User u)
         {
             if (user.GetLists(a => a.UserName == u.UserName && a.UserPassword == u.UserPassword).Count >= 1)
-            {
+            { 
                 return Json(new { msg = "登录成功", success = true });
             }
             else
