@@ -20,6 +20,7 @@ namespace Blog.UI.Controllers
         {
             return View();
         }
+        [HttpPost]
         //注册方法
         public JsonResult Add(T_User u)
         {
@@ -40,10 +41,11 @@ namespace Blog.UI.Controllers
             return View();
         }
         //登录方法
+        [HttpPost]
         public JsonResult GetUser(T_User u)
         {
             if (user.GetLists(a => a.UserName == u.UserName && a.UserPassword == u.UserPassword).Count >= 1)
-            { 
+            {
                 return Json(new { msg = "登录成功", success = true });
             }
             else
@@ -52,6 +54,7 @@ namespace Blog.UI.Controllers
             }
         }
         //找回方法
+        [HttpPost]
         public JsonResult Edit(T_User u)
         {
             if(user.Updata(u))

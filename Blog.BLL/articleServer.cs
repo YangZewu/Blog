@@ -11,16 +11,24 @@ namespace Blog.BLL
    public class articleServer
     {
         private articleDal article = new articleDal();
+        //查询类别
+        public List<T_ArticleType> Gettype()
+        {
+            return article.Gettype();
+        }
         //按照条件查询文章
         public List<T_Article> GetT_Articles(Expression<Func<T_Article, bool>> whereLambda)
         {
             return article.GetList(whereLambda);
         }
-        //按照降序查询文章
-        //public List<T_Article> GetT_Articles()
-        //{
-        //    return article.GetList();
-        //}
+        public List<T_Article> GetListsByPage(int offset, int limit, Expression<Func<T_Article, bool>> whereLambda)
+        {
+            return article.GetListsByPage(offset, limit, whereLambda);
+        }
+        public int GetCount(Expression<Func<T_Article, bool>> whereLambda)
+        {
+            return article.GetList(whereLambda).Count;
+        }
         //增加
         public bool Add(T_Article a)
         {
@@ -35,6 +43,14 @@ namespace Blog.BLL
         public bool Delete(int id)
         {
             return article.Delete(id);
+        }
+        public bool DeleteAll(List<int> id)
+        {
+            return article.Delete(id);
+        }
+        public bool Updata(T_Article edit)
+        {
+            return article.Updata(edit);
         }
     }
 }

@@ -21,5 +21,6 @@ namespace Blog.Model
         public int ReadPeople { get; set; }
         public Nullable<int> ArticleTypeId { get; set; }
         public string PublishName { get; set; }
+        public string userName { get; set; }
     }
 }

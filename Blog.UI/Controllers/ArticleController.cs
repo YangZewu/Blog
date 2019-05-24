@@ -16,7 +16,6 @@ namespace Blog.UI.Controllers
         {
             IPagedList<T_Article> Page = null;
             Page = article.GetT_Articles(a => true).ToPagedList(page, 4);
-            
             return View(Page);
         }
         [HttpGet]

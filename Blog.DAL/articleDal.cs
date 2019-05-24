@@ -10,16 +10,20 @@ namespace Blog.DAL
    public class articleDal
     {
         private BloggerEntities article = new BloggerEntities();
+        //查询文章类别
+        public List<T_ArticleType> Gettype()
+        {
+            return article.T_ArticleType.ToList();
+        }
         //按照条件查询文章
         public List<T_Article> GetList(Expression<Func<T_Article, bool>> whereLambda)
         {
             return article.T_Article.Where(whereLambda).OrderByDescending(a => a.PublishTime).ToList();
         }
-        //按发布时间的降序查找全部文章
-        //public List<T_Article> GetList()
-        //{
-        //    return article.T_Article.OrderByDescending(a => a.PublishTime).ToList();
-        //}
+        public List<T_Article> GetListsByPage(int offset, int limit, Expression<Func<T_Article, bool>> whereLambda)
+        {
+            return article.T_Article.OrderByDescending(a => a.PublishTime).Skip(offset).Take(limit).ToList();
+        }
         //增加
         public bool Add(T_Article a)
         {
@@ -29,8 +33,8 @@ namespace Blog.DAL
         //修改
         public bool Updata(int id)
         {
-            var us = article.T_Article.Where(a => a.Id==id).FirstOrDefault();
-            us.ReadPeople++;
+            var ar = article.T_Article.Where(a => a.Id==id).FirstOrDefault();
+            ar.ReadPeople++;
             return article.SaveChanges() > 0;
         }
         //删除
@@ -39,6 +43,25 @@ namespace Blog.DAL
             var ar = new T_Article{Id=id};
             article.T_Article.Attach(ar);
             article.T_Article.Remove(ar);
+            return article.SaveChanges() > 0;
+        }
+        public bool Delete(List<int> ids)
+        {
+            foreach (int id in ids)
+            {
+                var ar = new T_Article { Id = id };
+                article.T_Article.Attach(ar);
+                article.T_Article.Remove(ar);
+
+            }
+
+            return article.SaveChanges() > 0;
+        }
+        public bool Updata(T_Article edit)
+        {
+            var ar = article.T_Article.Where(a =>a.Id==edit.Id).FirstOrDefault();
+            ar.Title = edit.Title;
+            ar.Content = edit.Content;
             return article.SaveChanges() > 0;
         }
     }
