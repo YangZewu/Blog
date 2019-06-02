@@ -10,11 +10,6 @@ namespace Blog.DAL
    public class articleDal
     {
         private BloggerEntities article = new BloggerEntities();
-        //查询文章类别
-        public List<T_ArticleType> Gettype()
-        {
-            return article.T_ArticleType.ToList();
-        }
         //按照条件查询文章
         public List<T_Article> GetList(Expression<Func<T_Article, bool>> whereLambda)
         {
@@ -22,7 +17,7 @@ namespace Blog.DAL
         }
         public List<T_Article> GetListsByPage(int offset, int limit, Expression<Func<T_Article, bool>> whereLambda)
         {
-            return article.T_Article.OrderByDescending(a => a.PublishTime).Skip(offset).Take(limit).ToList();
+            return article.T_Article.Where(whereLambda).OrderByDescending(a => a.PublishTime).Skip(offset).Take(limit).ToList();
         }
         //增加
         public bool Add(T_Article a)

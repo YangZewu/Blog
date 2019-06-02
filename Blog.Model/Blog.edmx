@@ -14,7 +14,7 @@
           <Property Name="Content" Type="varchar" MaxLength="5000" Nullable="false" />
           <Property Name="PublishTime" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ReadPeople" Type="int" Nullable="false" />
-          <Property Name="ArticleTypeId" Type="int" />
+          <Property Name="ArticleTypeId" Type="nvarchar" MaxLength="50" />
           <Property Name="PublishName" Type="nvarchar" MaxLength="50" />
           <Property Name="userName" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -63,19 +63,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BloggerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="T_Article">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PublishTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ReadPeople" Type="Int32" Nullable="false" />
-          <Property Name="ArticleTypeId" Type="Int32" />
-          <Property Name="PublishName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="T_ArticleType">
           <Key>
             <PropertyRef Name="ArticleTypeId" />
@@ -112,31 +99,30 @@
           <Property Name="UserSig" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="BloggerEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="T_Article" EntityType="Self.T_Article" />
           <EntitySet Name="T_ArticleType" EntityType="Self.T_ArticleType" />
           <EntitySet Name="T_Comment" EntityType="Self.T_Comment" />
           <EntitySet Name="T_User" EntityType="Self.T_User" />
+          <EntitySet Name="T_Article" EntityType="BloggerModel.T_Article" />
         </EntityContainer>
+        <EntityType Name="T_Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="PublishTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReadPeople" Type="Int32" Nullable="false" />
+          <Property Name="ArticleTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PublishName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BloggerModelStoreContainer" CdmEntityContainer="BloggerEntities">
-          <EntitySetMapping Name="T_Article">
-            <EntityTypeMapping TypeName="BloggerModel.T_Article">
-              <MappingFragment StoreEntitySet="T_Article">
-                <ScalarProperty Name="userName" ColumnName="userName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
-                <ScalarProperty Name="ReadPeople" ColumnName="ReadPeople" />
-                <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
-                <ScalarProperty Name="PublishName" ColumnName="PublishName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="T_ArticleType">
             <EntityTypeMapping TypeName="BloggerModel.T_ArticleType">
               <MappingFragment StoreEntitySet="T_ArticleType">
@@ -172,6 +158,20 @@
                 <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="RegTime" ColumnName="RegTime" />
                 <ScalarProperty Name="UserSig" ColumnName="UserSig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Article">
+            <EntityTypeMapping TypeName="BloggerModel.T_Article">
+              <MappingFragment StoreEntitySet="T_Article">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="PublishName" ColumnName="PublishName" />
+                <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
+                <ScalarProperty Name="ReadPeople" ColumnName="ReadPeople" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

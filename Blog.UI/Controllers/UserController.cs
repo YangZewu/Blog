@@ -44,8 +44,10 @@ namespace Blog.UI.Controllers
         [HttpPost]
         public JsonResult GetUser(T_User u)
         {
+
             if (user.GetLists(a => a.UserName == u.UserName && a.UserPassword == u.UserPassword).Count >= 1)
             {
+                Session["userName"] = u.UserName;
                 return Json(new { msg = "登录成功", success = true });
             }
             else

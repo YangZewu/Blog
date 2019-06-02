@@ -9,6 +9,10 @@ $(function () {
     var oButtonInit = new ButtonInit();
     oButtonInit.Init();
 
+    //初始化Layui
+    var form = layui.form
+        , layer = layui.layer;
+
 });
 
 
@@ -59,7 +63,12 @@ var TableInit = function () {
             {
                 field: 'ArticleTypeId',
                 title: '文章类型'
-            }]
+                },
+                {
+                    field: 'PublishName',
+                    title:'发布人',
+                }
+            ]
         });
     };
 
@@ -76,6 +85,7 @@ var TableInit = function () {
 
 
 var ButtonInit = function () {
+    var id = 0;
     var oInit = new Object();
     var postdata = {};
 
@@ -84,42 +94,22 @@ var ButtonInit = function () {
         $("#btnAdd").click(function () {
             $("#myModalLabel").text("新增文章");
             $("#myModal").find(".form-control").val("");
+            loadSelectData();
             $("#myModal").modal();
 
-            postdata.DEPARTMENT_ID = "";
+            id = 0;
         });
         //新增文章方法
-        $("#btnSubmit").click(function () {
-            $.ajax({
-                url: "/Manag/Add",
-                type: "post",
-                data: ({
-                    "Title": $("#txtTitle").val(),
-                    "Content": $("#txtContent").val(),
-                    "Type": $("#slectType").val()
-                }),
-                success: function (data) {
-                    if (data.success) {
-                        alert("添加成功");
-                        $("#myModal").modal("hide");
-                        //刷新表格
-                        $("#tb_departments").bootstrapTable('refresh');
-                    }
-                    else {
-                        alert("添加失败");
-                    }
-                },
-            });
-        });
+
         //弹出修改窗体
         $("#btnEdit").click(function () {
             var editselect = $("#tb_article").bootstrapTable('getSelections');
             if (editselect.length > 1) {
-                alert("只能选择一条记录编辑");
+                layer.msg("只能选择一条记录编辑");
                 return;
             }
             else if (editselect.length <= 0) {
-                alert("请选择一条记录编辑");
+                layer.msg("请选择一条记录编辑");
                 return;
             }
             else {
@@ -130,6 +120,21 @@ var ButtonInit = function () {
                 $("#myModal").modal();
             }
         });
+        function loadSelectData() {
+            $("#slectType").empty();
+            $.ajax({
+                type: 'get',
+                url: "/Type/Type",
+                dataType: 'json',
+                success: function (datas) {//返回list数据并循环获取
+                    var select = $("#slectType");
+                    for (var i = 0; i < datas.rows.length; i++) { select.append("<option value='" + datas.rows[i].ArticleTypeId + "'>" + datas.rows[i].ArticleTypeName + "</option>"); }
+                    $("#slectType").selectpicker('val', '');
+                    $("#slectType").selectpicker('refresh');
+                    return false;
+                }
+            });
+        }
         //修改方法
         $("#btnSubmit").click(function () {
             $.ajax({
@@ -138,17 +143,18 @@ var ButtonInit = function () {
                 data: ({
                     "Title": $("#txtTitle").val(),
                     "Content": $("#txtContent").val(),
-                    "Type": $("#slectType").val()
+                    "ArticleTypeId": $("#slectType option:selected").text(),
+                    "Id": id
                 }),
                 success: function (data) {
                     if (data.success) {
-                        alert("修改成功");
+                        layer.msg("提交成功");
                         $("#myModal").modal("hide");
                         //刷新表格
-                        $("#tb_departments").bootstrapTable('refresh');
+                        $("#tb_article").bootstrapTable('refresh');
                     }
                     else {
-                        alert("修改失败");
+                        layer.msg("提交失败");
                     }
                 },
             });
@@ -157,39 +163,39 @@ var ButtonInit = function () {
         $("#btnDelete").click(function () {
             var arr = $("#tb_article").bootstrapTable('getSelections');
             if (arr.length == 0) {
-                alert("请选择要修改的记录");
+                layer.msg("请选择要删除的记录");
                 return;
             }
             else if (arr.length > 1) {
-                alert("选择的记录不能超过1条");
+                layer.msg("选择的记录不能超过1条");
                 return;
             }
-            if (confirm("你是否要删除该记录？")) {
+            layer.confirm('是否删除该记录', { icon: 3, btn: ['确定', '取消'], title: '提示' }, function () {
                 $.ajax({
                     url: "/Manag/Delete",
                     type: "post",
                     data: { "id": arr[0].Id },
                     success: function (data) {
                         if (data.success) {
-                            alert("删除成功");
+                            layer.msg("删除成功");
                             //刷新表格
                             $("#tb_article").bootstrapTable('refresh');
                         }
                         else {
-                            alert("删除失败");
+                            layer.msg("删除失败");
                         }
                     }
                 });
-            }
+            });
         });
         //批量删除
         $("#btnDeleteAll").click(function () {
             var arr = $("#tb_article").bootstrapTable('getSelections');
             if (arr.length == 0) {
-                alert("请选择要修改的记录");
+                layer.msg("请选择要删除的记录");
                 return;
             }
-            if (confirm("你是否要批量删除这些记录")) {
+            layer.confirm('是否批量删除记录', { icon: 3, btn: ['确定', '取消'], title: '提示' }, function () {
                 var ids = "";
                 for (var i = 0; i < arr.length; i++) {
                     ids += arr[i].Id + ",";
@@ -201,16 +207,16 @@ var ButtonInit = function () {
                     data: { "ids": ids },
                     success: function (data) {
                         if (data.success) {
-                            alert("批量删除成功");
+                            layer.msg("批量删除成功");
                             //刷新表格
                             $("#tb_article").bootstrapTable('refresh');
                         }
                         else {
-                            alert("批量删除失败");
+                            layer.msg("批量删除失败");
                         }
                     }
                 });
-            }
+            });
         });
     };
 

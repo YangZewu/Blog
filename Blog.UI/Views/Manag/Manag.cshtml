@@ -9,14 +9,14 @@
         <div class="row">
             <div class="col-sm-2" style="margin-top:10px">
                 <div class="list-group">
-                    <a href="/Account/Index" class="list-group-item">
+                    <a href="/Account/Index" class="list-group-item" >
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>用户管理
                     </a>
-                    <a href="/Type/Index" class="list-group-item glyphicon glyphicon-zoom-in">
-                        类别管理
+                    <a href="/Type/Index"   >
+                        <span class="list-group-item glyphicon glyphicon-zoom-in">类别管理</span>
                     </a>
-                    <a href="/Comment/Index" class="list-group-item glyphicon glyphicon-pencil">
-                        评论管理
+                    <a href="/Comment/Index"  >
+                        <span class="list-group-item glyphicon glyphicon-pencil">评论管理</span>
                     </a>
                 </div>
             </div>
@@ -56,10 +56,8 @@
                     <div class="form-group">
                         <label for="inputType" class="col-sm-2 control-label">文章类别</label>
                         <div class="col-sm-10">
+                            @*@Html.DropDownList("slectType", ViewBag.list as List<SelectList>, new { @class="form-control" })*@
                             <select id="slectType" name="ArticleTypeId" class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
                             </select>
                         </div>
                     </div>

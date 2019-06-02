@@ -19,7 +19,7 @@ namespace Blog.Model
         public string Content { get; set; }
         public string PublishTime { get; set; }
         public int ReadPeople { get; set; }
-        public Nullable<int> ArticleTypeId { get; set; }
+        public string ArticleTypeId { get; set; }
         public string PublishName { get; set; }
         public string userName { get; set; }
     }

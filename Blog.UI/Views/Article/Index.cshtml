@@ -14,19 +14,19 @@
             <hr />
             @foreach (var article in Model)
             {
-                <div class="blog-post">
-                    <h4 class="blog-post-title">@article.Title</h4>
-                    <p class="blog-post-meta">发布时间：@article.PublishTime|阅读人数：@article.ReadPeople|发布人：@article.PublishName</p>
-                    <p>@article.Content @Html.ActionLink("查看全文", "Show", new { Id = article.Id })</p>
-                    <hr />
-                </div>
+        <div class="blog-post">
+                <h4 class="blog-post-title">@article.Title</h4>
+                <p class="blog-post-meta">发布时间：@article.PublishTime|阅读人数：@article.ReadPeople|发布人：@article.PublishName</p>
+                <p>@article.Content @Html.ActionLink("查看全文", "Show", new { Id = article.Id })</p>
+                <hr />
+        </div>
             }
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
         <div class="col-sm-2 col-sm-offset-1 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
-                <h4><em>@Session["UserPet"]. </em><img class="img-circle" style="width:80px;height:80px" src="/img/1.jpg" /></h4>
-                <p>@Session["UserSig"]</p>
+                <h4><em>@ViewBag.pet</em><img class="img-circle" style="width:80px;height:80px" src="/img/1.jpg" /></h4>
+                <p>@ViewBag.sig</p>
             </div>
             <div class="sidebar-module">
                 <h4>热门文章</h4>

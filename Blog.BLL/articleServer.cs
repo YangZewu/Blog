@@ -12,10 +12,6 @@ namespace Blog.BLL
     {
         private articleDal article = new articleDal();
         //查询类别
-        public List<T_ArticleType> Gettype()
-        {
-            return article.Gettype();
-        }
         //按照条件查询文章
         public List<T_Article> GetT_Articles(Expression<Func<T_Article, bool>> whereLambda)
         {

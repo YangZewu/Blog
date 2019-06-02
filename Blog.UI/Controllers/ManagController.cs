@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Blog.BLL;
 using Blog.Model;
 namespace Blog.UI.Controllers
 {
+
     public class ManagController : Controller
     {
         private articleServer article = new articleServer();
+        private userServer user = new userServer();
         // GET: Manag
         public ActionResult Index()
         {
@@ -20,38 +23,43 @@ namespace Blog.UI.Controllers
             return View();
         }
         //将文章显示在表格上
-        public JsonResult GetArticle(int limit, int offset,T_User u)
+        public JsonResult GetArticle(int limit, int offset, T_User u)
         {
-            List<T_Article> articles = article.GetListsByPage(offset, limit, (a) => true);
-            int total = article.GetCount((a) => true);
+            string s = Session["userName"].ToString();
+            List<T_Article> articles = article.GetListsByPage(offset, limit, (a) => a.userName == s);
+            int total = article.GetCount((a) => a.userName == s);
             return Json(new { total = total, rows = articles }, JsonRequestBehavior.AllowGet);
         }
         //新增文章
-        [HttpPost]
-        public JsonResult Add(T_Article a)
-        {
-            a.PublishTime = System.DateTime.Now.ToString();
-            a.ReadPeople = 0;
-            if (article.Add(a))
-            {
-               return  Json(new { msg = "添加成功", success = true });
-            }
-            else
-            {
-                return Json(new { msg = "添加失败", success = false });
-            }
-        }
         //修改文章
         [HttpPost]
         public JsonResult Edit(T_Article edit)
         {
-            if(article.Updata(edit))
+            string s = Session["userName"].ToString();
+            if (edit.Id == 0)
             {
-                return Json(new { msg = "修改成功", success = true });
+                edit.PublishTime = System.DateTime.Now.ToString();
+                edit.userName = s;
+                edit.PublishName = user.GetLists(a => a.UserName == s)[0].UserPet;
+                if (article.Add(edit))
+                {
+                    return Json(new { msg = "添加成功", success = true });
+                }
+                else
+                {
+                    return Json(new { msg = "添加失败", success = false });
+                }
             }
             else
             {
-                return Json(new { msg = "修改失败", success = false });
+                if (article.Updata(edit))
+                {
+                    return Json(new { msg = "修改成功", success = true });
+                }
+                else
+                {
+                    return Json(new { msg = "修改失败", success = false });
+                }
             }
         }
         //删除文章
@@ -88,11 +96,5 @@ namespace Blog.UI.Controllers
                 return Json(new { msg = "批量删除失败", success = true });
             }
         }
-        //查询类别
-        //public ActionResult Gettype()
-        //{
-        //    List<SelectListItem> items = new List<SelectListItem>();
-
-        //}
     }
 }

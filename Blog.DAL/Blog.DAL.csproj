@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="articleDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="publishDal.cs" />
+    <Compile Include="TypeDal.cs" />
     <Compile Include="userDal.cs" />
   </ItemGroup>
   <ItemGroup>

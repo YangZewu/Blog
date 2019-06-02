@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="articleServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="publicServer.cs" />
+    <Compile Include="TypeServer.cs" />
     <Compile Include="userServer.cs" />
   </ItemGroup>
   <ItemGroup>

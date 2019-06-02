@@ -10,11 +10,11 @@
             },
             success: function (data) {
                 if (data.success) {
-                    alert("找回成功");
+                    layer.msg("找回成功");
                     $("#myModal").modal("hide");
                 }
                 else {
-                    alert("找回失败");
+                    layer.msg("找回失败");
                 }
             }
         });
@@ -34,11 +34,11 @@
             },
             success: function (data) {
                 if (data.success) {
-                    alert("登录成功");
                     window.location = "/Article/Index";
+                    layer.msg("登录成功");
                 }
                 else {
-                    alert("登录失败");
+                    layer.msg("登录失败");
                 }
             }
         });
@@ -61,11 +61,11 @@
             },
             success: function (data) {
                 if (data.success) {
-                    alert("注册成功");
                     window.location = "/User/Login";
+                    layer.msg("注册成功");
                 }
                 else {
-                    alert("注册失败");
+                    layer.msg("注册失败");
                 }
             }
         });
