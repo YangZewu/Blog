@@ -15,15 +15,15 @@ namespace Blog.UI.Controllers
         // GET: Article
         public ActionResult Index(int page = 1)
         {
-            if (Session["userName"] != null)
-            {
-                string name = Session["userName"].ToString();
-                ViewBag.pet = user.GetLists(a => a.UserName == name)[0].UserPet;
-                ViewBag.sig = user.GetLists(a => a.UserName == name)[0].UserSig;
-            }
-            IPagedList<T_Article> Page = null;
-            Page = article.GetT_Articles(a => true).ToPagedList(page, 4);
-            return View(Page);
+                if (Session["userName"] != null)
+                {
+                    string name = Session["userName"].ToString();
+                    ViewBag.pet = user.GetLists(a => a.UserName == name)[0].UserPet;
+                    ViewBag.sig = user.GetLists(a => a.UserName == name)[0].UserSig;
+                }
+                IPagedList<T_Article> Page = null;
+                Page = article.GetT_Articles(a => true).ToPagedList(page, 4);
+                return View(Page);
         }
         [HttpGet]
         public ActionResult Show(int Id)

@@ -14,11 +14,12 @@
             <hr />
             @foreach (var article in Model)
             {
-        <div class="blog-post">
-                <h4 class="blog-post-title">@article.Title</h4>
-                <p class="blog-post-meta">发布时间：@article.PublishTime|阅读人数：@article.ReadPeople|发布人：@article.PublishName</p>
-                <p>@article.Content @Html.ActionLink("查看全文", "Show", new { Id = article.Id })</p>
-                <hr />
+        <div id="content" class="blog-post">
+            <h4 class="blog-post-title">@article.Title</h4>
+            <p class="blog-post-meta">发布时间：@article.PublishTime|阅读人数：@article.ReadPeople|发布人：@article.PublishName</p>
+            @*@Html.Raw(article.Content)*@
+            <p>@Html.Raw(article.Content) @Html.ActionLink("查看全文", "Show", new { Id = article.Id })</p>
+            <hr />
         </div>
             }
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
@@ -33,9 +34,9 @@
                 <ol class="list-unstyled">
 
                     @*@foreach (var article in @ViewBag.top5 as List<Blog.Models.Article>)
-                    {
-                        <li>@Html.ActionLink(article.Title, "Show", new { Id = article.Id })</li>
-                    }*@
+                        {
+                            <li>@Html.ActionLink(article.Title, "Show", new { Id = article.Id })</li>
+                        }*@
                 </ol>
             </div>
             <div class="sidebar-module">

@@ -8,7 +8,7 @@ using Blog.BLL;
 using Blog.Model;
 namespace Blog.UI.Controllers
 {
-
+    [Authorize]
     public class ManagController : Controller
     {
         private articleServer article = new articleServer();
@@ -22,6 +22,7 @@ namespace Blog.UI.Controllers
         {
             return View();
         }
+        
         //将文章显示在表格上
         public JsonResult GetArticle(int limit, int offset, T_User u)
         {
@@ -32,6 +33,7 @@ namespace Blog.UI.Controllers
         }
         //新增文章
         //修改文章
+        [ValidateInput(false)]
         [HttpPost]
         public JsonResult Edit(T_Article edit)
         {

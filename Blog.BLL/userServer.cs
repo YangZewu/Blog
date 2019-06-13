@@ -31,5 +31,9 @@ namespace Blog.BLL
         {
             return userdal.Delete(id);
         }
+        public T_User CheckLogin(string name, string password)
+        {
+            return GetLists(u=>u.UserName==name && u.UserPassword==password).FirstOrDefault();
+        }
     }
 }

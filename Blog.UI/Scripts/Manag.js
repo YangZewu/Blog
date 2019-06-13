@@ -32,7 +32,7 @@ var TableInit = function () {
             queryParams: oTableInit.queryParams,//传递参数（*）
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
-            pageSize: 3,                       //每页的记录行数（*）
+            pageSize: 5,                       //每页的记录行数（*）
             pageList: [3, 10, 25, 50, 100],        //可供选择的每页的行数（*）
             search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             strictSearch: true,
@@ -115,7 +115,8 @@ var ButtonInit = function () {
             else {
                 $("#myModalLabel").text("修改文章");
                 $("#txtTitle").val(editselect[0].Title);
-                $("#txtContent").val(editselect[0].Content);
+               // $("#txtContent").val(editselect[0].Content);
+                CKEDITOR.instances['txtContent'].setData(editselect[0].Content);
                 id = editselect[0].Id;
                 $("#myModal").modal();
             }
@@ -142,7 +143,7 @@ var ButtonInit = function () {
                 type: "post",
                 data: ({
                     "Title": $("#txtTitle").val(),
-                    "Content": $("#txtContent").val(),
+                    "Content": CKEDITOR.instances['txtContent'].getData(),
                     "ArticleTypeId": $("#slectType option:selected").text(),
                     "Id": id
                 }),

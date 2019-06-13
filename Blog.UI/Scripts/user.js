@@ -29,13 +29,12 @@
             url: "/User/GetUser",
             type: "Post",
             data: {
-                "UserName": $("#inputUName").val(),
-                "UserPassword": $("#inputUPwd").val()
+                "userName": $("#inputUName").val(),
+                "password": $("#inputUPwd").val()
             },
             success: function (data) {
                 if (data.success) {
                     window.location = "/Article/Index";
-                    layer.msg("登录成功");
                 }
                 else {
                     layer.msg("登录失败");

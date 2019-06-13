@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Blog.Model;
 using Blog.BLL;
+using System.Web.Security;
+
 namespace Blog.UI.Controllers
 {
     public class UserController : Controller
@@ -42,12 +44,14 @@ namespace Blog.UI.Controllers
         }
         //登录方法
         [HttpPost]
-        public JsonResult GetUser(T_User u)
+        public JsonResult GetUser(string userName,string password)
         {
 
-            if (user.GetLists(a => a.UserName == u.UserName && a.UserPassword == u.UserPassword).Count >= 1)
+            T_User us= user.CheckLogin(userName,password);
+            if(us!=null)
             {
-                Session["userName"] = u.UserName;
+                FormsAuthentication.SetAuthCookie(userName,false);
+                Session["userName"] = userName;
                 return Json(new { msg = "登录成功", success = true });
             }
             else
