@@ -1,5 +1,6 @@
 ﻿$(function () {
-    loadSelectData();
+    loadSelectData(); 
+    //发布按钮
     $("#btnPublish").click(function () {
         $.ajax({
             url: "/Publish/Add",
@@ -24,6 +25,7 @@
             },
         });
     });
+    //下拉框动态绑定数据
     function loadSelectData() {
         $("#publishType").empty();
         $.ajax({

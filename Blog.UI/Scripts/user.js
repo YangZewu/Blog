@@ -34,7 +34,11 @@
             },
             success: function (data) {
                 if (data.success) {
-                    window.location = "/Article/Index";
+                    //window.location = "/Article/Index";
+                    layer.msg('登录成功', function () {
+                        //do something
+                        window.location = "/Article/Index";
+                    }); 
                 }
                 else {
                     layer.msg("登录失败");
@@ -43,7 +47,9 @@
         });
     }),
     //注册
-    $("#btnReg").click(function () {
+        
+
+        $("#btnReg").click(function () {
         $.ajax({
             url: "/User/Add",
             type: "Post",
@@ -58,10 +64,17 @@
                 "UserQQ": $("#inputQQ").val(),
                 "UserSig": $("#inputUserSig").val()
             },
+            //data: formdata,
+            //contentType: false, //不设置内容类型
+            //processData: false, //不处理数据
             success: function (data) {
                 if (data.success) {
-                    window.location = "/User/Login";
-                    layer.msg("注册成功");
+                   /* window.location = "/User/Login";
+                    layer.msg("注册成功");*/
+                    layer.msg('注册成功', function () {
+                        //do something
+                        window.location = "/User/Login";
+                    }); 
                 }
                 else {
                     layer.msg("注册失败");

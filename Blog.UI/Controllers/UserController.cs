@@ -24,8 +24,10 @@ namespace Blog.UI.Controllers
         }
         [HttpPost]
         //注册方法
-        public JsonResult Add(T_User u)
+        public JsonResult Add(T_User u)//, HttpPostedFileBase image
         {
+            //u.Image = new byte[image.ContentLength];
+           // image.InputStream.Read(u.Image, 0, image.ContentLength);
             u.RegTime = System.DateTime.Now.ToString();
             u.UserState = "1";
             if (user.Add(u))
@@ -71,6 +73,13 @@ namespace Blog.UI.Controllers
             {
                 return Json(new { msg = "找回失败", success = false });
             }
+        }
+       public ActionResult CheckName(T_User u)
+        {
+            if (user.GetLists(a => a.UserName == u.UserName).Count>0)
+                return Json(false, JsonRequestBehavior.AllowGet);
+            else
+                return Json(true, JsonRequestBehavior.DenyGet);
         }
     }
 }

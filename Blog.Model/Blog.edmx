@@ -49,7 +49,7 @@
           <Property Name="UserMailbox" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserQQ" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserState" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ImageId" Type="int" />
+          <Property Name="Image" Type="varbinary" MaxLength="50" />
           <Property Name="RegTime" Type="nvarchar" MaxLength="50" />
           <Property Name="UserSig" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -80,29 +80,11 @@
           <Property Name="CommentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="T_User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserPet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserSex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserBirthplace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserMailbox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserQQ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ImageId" Type="Int32" />
-          <Property Name="RegTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserSig" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityContainer Name="BloggerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="T_ArticleType" EntityType="Self.T_ArticleType" />
           <EntitySet Name="T_Comment" EntityType="Self.T_Comment" />
-          <EntitySet Name="T_User" EntityType="Self.T_User" />
           <EntitySet Name="T_Article" EntityType="BloggerModel.T_Article" />
+          <EntitySet Name="T_User" EntityType="BloggerModel.T_User" />
         </EntityContainer>
         <EntityType Name="T_Article">
           <Key>
@@ -116,6 +98,24 @@
           <Property Name="ArticleTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PublishName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserSex" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UserBirthday" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserBirthplace" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserMailbox" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserQQ" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserState" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="RegTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserSig" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -142,25 +142,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="T_User">
-            <EntityTypeMapping TypeName="BloggerModel.T_User">
-              <MappingFragment StoreEntitySet="T_User">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserPet" ColumnName="UserPet" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserSex" ColumnName="UserSex" />
-                <ScalarProperty Name="UserBirthday" ColumnName="UserBirthday" />
-                <ScalarProperty Name="UserBirthplace" ColumnName="UserBirthplace" />
-                <ScalarProperty Name="UserMailbox" ColumnName="UserMailbox" />
-                <ScalarProperty Name="UserQQ" ColumnName="UserQQ" />
-                <ScalarProperty Name="UserState" ColumnName="UserState" />
-                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
-                <ScalarProperty Name="UserSig" ColumnName="UserSig" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="T_Article">
             <EntityTypeMapping TypeName="BloggerModel.T_Article">
               <MappingFragment StoreEntitySet="T_Article">
@@ -172,6 +153,25 @@
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_User">
+            <EntityTypeMapping TypeName="BloggerModel.T_User">
+              <MappingFragment StoreEntitySet="T_User">
+                <ScalarProperty Name="UserSig" ColumnName="UserSig" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="UserState" ColumnName="UserState" />
+                <ScalarProperty Name="UserQQ" ColumnName="UserQQ" />
+                <ScalarProperty Name="UserMailbox" ColumnName="UserMailbox" />
+                <ScalarProperty Name="UserBirthplace" ColumnName="UserBirthplace" />
+                <ScalarProperty Name="UserBirthday" ColumnName="UserBirthday" />
+                <ScalarProperty Name="UserSex" ColumnName="UserSex" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserPet" ColumnName="UserPet" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

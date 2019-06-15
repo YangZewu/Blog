@@ -24,7 +24,7 @@ namespace Blog.Model
         public string UserMailbox { get; set; }
         public string UserQQ { get; set; }
         public string UserState { get; set; }
-        public Nullable<int> ImageId { get; set; }
+        public byte[] Image { get; set; }
         public string RegTime { get; set; }
         public string UserSig { get; set; }
     }

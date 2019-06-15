@@ -27,7 +27,7 @@ namespace Blog.Model
     
         public virtual DbSet<T_ArticleType> T_ArticleType { get; set; }
         public virtual DbSet<T_Comment> T_Comment { get; set; }
-        public virtual DbSet<T_User> T_User { get; set; }
         public virtual DbSet<T_Article> T_Article { get; set; }
+        public virtual DbSet<T_User> T_User { get; set; }
     }
 }
