@@ -82,5 +82,6 @@ namespace Blog.UI.Controllers
                 return Json(true, JsonRequestBehavior.DenyGet);
         }
         //这是一个helloworld!
+        //hellowrod2
     }
 }
