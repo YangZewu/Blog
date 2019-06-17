@@ -13,7 +13,7 @@
             }),
             success: function (data) {
                 if (data.success) { 
-                    layer.msg('发布成功', function () {
+                    layer.msg('发布成功', { time: 1000 }, function () {
                         //do something
                         $("#publishModal").modal("hide");
                         window.location = "/Article/Index";

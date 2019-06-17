@@ -77,9 +77,9 @@ namespace Blog.UI.Controllers
        public ActionResult CheckName(T_User u)
         {
             if (user.GetLists(a => a.UserName == u.UserName).Count>0)
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new { valid = false });
             else
-                return Json(true, JsonRequestBehavior.DenyGet);
+                return Json(new { valid = true });
         }
         //helloWorld
     }

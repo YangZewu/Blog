@@ -26,7 +26,8 @@
                       remote: {
                           url: "/User/CheckName",
                           message: '用户名已存在，请重新输入!',
-                          delay:1000,
+                          delay: 1000,
+                          type:'post'
   
                       }
                 }
@@ -116,11 +117,6 @@
             }
         }
     });
-
-
-    /*手动验证表单，当是普通按钮时。*/
-    $('#userForm').data('bootstrapValidator').validate();//启用验证
-    var flag = $('#userForm').data('bootstrapValidator').isValid()//验证是否通过true/false
 });
         
 
