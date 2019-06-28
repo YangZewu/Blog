@@ -638,6 +638,7 @@
     <Content Include="Content\bootstrapvalidator\bootstrapvalidator-master\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrapvalidator\bootstrapvalidator-master\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrapvalidator\bootstrapvalidator-master\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Img\1.jpg" />
     <Content Include="Scripts\bootstrap.min.js" />
