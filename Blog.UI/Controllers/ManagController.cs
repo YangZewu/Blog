@@ -98,5 +98,28 @@ namespace Blog.UI.Controllers
                 return Json(new { msg = "批量删除失败", success = true });
             }
         }
+        //显示个人信息
+        public ActionResult Myself()
+        {
+            string name = Session["userName"].ToString();
+            ViewBag.pet = user.GetLists(a => a.UserName == name)[0].UserPet;
+            ViewBag.sig = user.GetLists(a => a.UserName == name)[0].UserSig;
+            ViewBag.email = user.GetLists(a => a.UserName == name)[0].UserMailbox;
+            ViewBag.qq = user.GetLists(a => a.UserName == name)[0].UserQQ;
+            ViewBag.sex = user.GetLists(a => a.UserName == name)[0].UserSex;
+            ViewBag.bir = user.GetLists(a => a.UserName == name)[0].UserBirthplace;
+            ViewBag.br = user.GetLists(a => a.UserName == name)[0].UserBirthday;
+            ViewBag.na = user.GetLists(a => a.UserName == name)[0].UserName;
+            return View();
+        }
+        //修改个人信息
+        [HttpPost]
+        public JsonResult Editself(T_User u)
+        {
+            if (user.Edit(u))
+                return Json(new { msg = "修改成功", success = true });
+            else
+                return Json(new { msg = "修改失败", success = false });
+        }
     }
 }

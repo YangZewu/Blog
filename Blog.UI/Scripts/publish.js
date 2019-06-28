@@ -2,28 +2,31 @@
     loadSelectData(); 
     //发布按钮
     $("#btnPublish").click(function () {
-        $.ajax({
-            url: "/Publish/Add",
-            type: "post",
-            data: ({
-                "Title": $("#publishTitle").val(),
-                //"Content": $("#publishContent").val(),
-                "Content": CKEDITOR.instances['publishContent'].getData(),
-                "ArticleTypeId": $("#publishType option:selected").text()
-            }),
-            success: function (data) {
-                if (data.success) { 
-                    layer.msg('发布成功', { time: 1000 }, function () {
-                        //do something
-                        $("#publishModal").modal("hide");
-                        window.location = "/Article/Index";
-                    }); 
-                }
-                else {
-                    layer.msg("发布失败");
-                }
-            },
-        });
+        $('#Add').data('bootstrapValidator').validate();//启用验证
+        if ($('#Add').data('bootstrapValidator').isValid()) {
+            $.ajax({
+                url: "/Publish/Add",
+                type: "post",
+                data: ({
+                    "Title": $("#publishTitle").val(),
+                    //"Content": $("#publishContent").val(),
+                    "Content": CKEDITOR.instances['publishContent'].getData(),
+                    "ArticleTypeId": $("#publishType option:selected").text()
+                }),
+                success: function (data) {
+                    if (data.success) {
+                        layer.msg('发布成功！', { time: 1000 }, function () {
+                            //do something
+                            window.location = "/Article/Index";
+                        });
+                    }
+                    else {
+                        layer.msg("发布失败！");
+                    }
+                },
+            });
+        }
+        
     });
     //下拉框动态绑定数据
     function loadSelectData() {

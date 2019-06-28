@@ -81,6 +81,5 @@ namespace Blog.UI.Controllers
             else
                 return Json(new { valid = true });
         }
-        //helloWorld
     }
 }

@@ -609,6 +609,8 @@
     <Content Include="Content\layui\font\iconfont.eot" />
     <Content Include="Content\layui\font\iconfont.ttf" />
     <Content Include="Content\layui\font\iconfont.woff" />
+    <Content Include="Scripts\checkAdd.js" />
+    <Content Include="Scripts\checkLogin.js" />
     <Content Include="Scripts\checkUser.js" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
@@ -962,7 +964,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\layui.all.js" />
-    <Content Include="Scripts\Manag.js" />
+    <Content Include="Scripts\manag.js" />
+    <Content Include="Scripts\checkmyself.js" />
     <Content Include="Scripts\publish.js" />
     <Content Include="Scripts\user.js" />
     <Content Include="Web.config" />
@@ -970,6 +973,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ClearController.cs" />
+    <Compile Include="Controllers\CollectionController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ManagController.cs" />
     <Compile Include="Controllers\PublishController.cs" />
     <Compile Include="Controllers\TypeController.cs" />
@@ -991,6 +997,9 @@
     <Content Include="Views\Article\Show.cshtml" />
     <Content Include="Views\Manag\Manag.cshtml" />
     <Content Include="Views\Publish\Publish.cshtml" />
+    <Content Include="Views\Manag\Myself.cshtml" />
+    <Content Include="Views\Comment\Comment.cshtml" />
+    <Content Include="Views\Collection\Coll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1001,6 +1010,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Clear\" />
     <Folder Include="Views\Type\" />
   </ItemGroup>
   <ItemGroup>

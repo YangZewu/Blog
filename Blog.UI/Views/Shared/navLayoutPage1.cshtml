@@ -11,16 +11,16 @@
     <link href="~/Content/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrapvalidator/bootstrapvalidator-master/dist/css/bootstrapValidator.css" rel="stylesheet" />
 
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Content/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="~/Content/bootstrap-table/bootstrap-table-locale-all.min.js"></script>
     <script src="~/Content/layui/layui.all.js"></script>
-    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
     <script src="~/Scripts/ckeditor/config.js"></script>
     <script src="~/Content/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
     <script src="~/Content/bootstrapvalidator/bootstrapvalidator-master/dist/js/bootstrapValidator.js"></script>
-
 </head>
 <body>
     <div>
@@ -43,16 +43,15 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人信息 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">我的信息</a></li>
-                                <li><a href="/Manag/Manag">我的文章</a></li>
-                                <li><a href="#">我的收藏</a></li>
+                                <li><a href="/Manag/Manag">个人管理</a></li>
+                                <li><a href="/Collection/Coll">我的收藏</a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/User/Login">登录 <span class="sr-only">(current)</span></a></li>
+                        <li><a id="login" href="/User/Login">登录 <span class="sr-only">(current)</span></a></li>
                         <li><a href="/User/Reg">注册</a></li>
-                        <li><a href="#">退出</a></li>
+                        <li><a href="/Clear/logOut">退出</a></li>
                     </ul>
                 </div><!--/.navbar-collapse -->
             </div>

@@ -35,5 +35,9 @@ namespace Blog.BLL
         {
             return GetLists(u=>u.UserName==name && u.UserPassword==password).FirstOrDefault();
         }
+        public bool Edit(T_User u)
+        {
+            return userdal.Edit(u);
+        }
     }
 }

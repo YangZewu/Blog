@@ -1,59 +1,64 @@
 ﻿$(function () {
     //找回
     $("#btnEdit").click(function () {
-        $.ajax({
-            url: "/User/Edit",
-            type: "Post",
-            data: {
-                "UserName": $("#inputEUName").val(),
-                "UserPassword": $("#inputEPwd").val()
-            },
-            success: function (data) {
-                if (data.success) {
-                    layer.msg("找回成功");
-                    $("#myModal").modal("hide");
+        $('#edit').data('bootstrapValidator').validate();//启用验证
+        if ($('#edit').data('bootstrapValidator').isValid()) {
+            $.ajax({
+                url: "/User/Edit",
+                type: "Post",
+                data: {
+                    "UserName": $("#inputEUName").val(),
+                    "UserPassword": $("#inputEPwd").val()
+                },
+                success: function (data) {
+                    if (data.success) {
+                        layer.msg("找回成功！");
+                        $("#myModal").modal("hide");
+                    }
+                    else {
+                        layer.msg("用户名不匹配，请重新输入！");
+                    }
                 }
-                else {
-                    layer.msg("找回失败");
-                }
+            });
+        }
+    }),
+        //弹出窗口
+        $("#btnUp").click(function () {
+            $("#myModal").modal();
+        }),
+        //登录
+        $("#btnLog").click(function () {
+            $('#userForm').data('bootstrapValidator').validate();//启用验证
+            if ($('#userForm').data('bootstrapValidator').isValid()) {
+                $.ajax({
+                    url: "/User/GetUser",
+                    type: "Post",
+                    data: {
+                        "userName": $("#inputUName").val(),
+                        "password": $("#inputUPwd").val()
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            //window.location = "/Article/Index";
+                            layer.msg('登录成功！', { time: 1000 }, function () {                                
+                                //do something
+                                window.location = "/Article/Index";
+                            });
+                        }
+                        else {
+                            layer.msg("用户名或密码错误！");
+                        }
+                    }
+                });
             }
-        });
-    }),
-    //弹出窗口
-    $("#btnUp").click(function () {
-        $("#myModal").modal();
-    }),
-    //登录
-    $("#btnLog").click(function () {
-        $.ajax({
-            url: "/User/GetUser",
-            type: "Post",
-            data: {
-                "userName": $("#inputUName").val(),
-                "password": $("#inputUPwd").val()
-            },
-            success: function (data) {
-                if (data.success) {
-                    //window.location = "/Article/Index";
-                    layer.msg('登录成功', { time: 1000 }, function () {
-                        
-                        //do something
-                        window.location = "/Article/Index";
-                    }); 
-                }
-                else {
-                    layer.msg("登录失败");
-                }
-            }
-        });
-    }),
-    //注册
-        
+
+        }),
+        //注册
+
 
         $("#btnReg").click(function () {
             $('#userForm').data('bootstrapValidator').validate();//启用验证
-            if ($('#userForm').data('bootstrapValidator').isValid())
-            {
+            if ($('#userForm').data('bootstrapValidator').isValid()) {
                 $.ajax({
                     url: "/User/Add",
                     type: "Post",
@@ -75,13 +80,13 @@
                         if (data.success) {
                             /* window.location = "/User/Login";
                              layer.msg("注册成功");*/
-                            layer.msg('注册成功', { time: 1000 }, function () {
+                            layer.msg('注册成功！', { time: 1000 }, function () {
                                 //do something
                                 window.location = "/User/Login";
                             });
                         }
                         else {
-                            layer.msg("注册失败");
+                            layer.msg("注册失败！");
                         }
                     }
                 });
