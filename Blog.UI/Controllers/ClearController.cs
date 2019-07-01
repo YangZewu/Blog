@@ -14,6 +14,7 @@ namespace Blog.UI.Controllers
         {
             return View();
         }
+        //退出登录
         public ActionResult logOut()
         {
             FormsAuthentication.SignOut();

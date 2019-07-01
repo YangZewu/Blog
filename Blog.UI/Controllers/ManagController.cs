@@ -23,7 +23,7 @@ namespace Blog.UI.Controllers
             return View();
         }
         
-        //将文章显示在表格上
+        //按照用户名将文章显示在表格上
         public JsonResult GetArticle(int limit, int offset, T_User u)
         {
             string s = Session["userName"].ToString();

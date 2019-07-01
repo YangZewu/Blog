@@ -74,6 +74,7 @@ namespace Blog.UI.Controllers
                 return Json(new { msg = "找回失败", success = false });
             }
         }
+        //验证用户名
        public ActionResult CheckName(T_User u)
         {
             if (user.GetLists(a => a.UserName == u.UserName).Count>0)

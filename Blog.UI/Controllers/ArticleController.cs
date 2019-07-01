@@ -13,6 +13,7 @@ namespace Blog.UI.Controllers
         private articleServer article = new articleServer();
         private userServer user = new userServer();
         // GET: Article
+        //显示用户信息和签名以及分页
         public ActionResult Index(int page = 1)
         {
                 if (Session["userName"] != null)
@@ -25,6 +26,7 @@ namespace Blog.UI.Controllers
                 Page = article.GetT_Articles(a => true).ToPagedList(page, 4);
                 return View(Page);
         }
+        //显示全文
         [HttpGet]
         public ActionResult Show(int Id)
         {

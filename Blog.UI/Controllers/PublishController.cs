@@ -17,11 +17,13 @@ namespace Blog.UI.Controllers
         {
             return View();
         }
+        //发布页面
         [Authorize]
         public ActionResult Publish()
         {
             return View();
         }
+        //发布文章的方法
         [ValidateInput(false)]
         [HttpPost]
         public JsonResult Add(T_Article arcitle)

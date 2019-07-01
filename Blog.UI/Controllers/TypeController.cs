@@ -15,6 +15,7 @@ namespace Blog.UI.Controllers
         {
             return View();
         }
+        //查询数据库的类别信息
         [HttpGet]
         public JsonResult Type()
         {
