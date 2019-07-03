@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/navLayoutPage1.cshtml";
 }
 
-<div class="blog-post container col-md-4 col-md-offset-4">
+<div class="blog-post container col-md-4 col-md-offset-4" style="margin-top:30px;">
     <h4 class="blog-post-title">@Model.Title</h4>
     <p class="blog-post-meta">发布时间：@Model.PublishTime|阅读人数：@Model.ReadPeople|发布人：@Model.PublishName</p>
     <p>@Html.Raw(Model.Content) </p>
